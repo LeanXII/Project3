@@ -36,7 +36,7 @@ function SearchLocation() {
           type="text"
           value={searchText}
           onChange={(event) => setSearchText(event.target.value)}
-          placeholder="Type a city name"
+          placeholder="Type a Location"
         />
         <button type="submit">
           Look Up City
@@ -52,7 +52,7 @@ function SearchLocation() {
             ))}
           </ul>
         ) : (
-          <p>Type a city name and click search</p>
+          <p>Type a location and click search</p>
         )}
       </div>
     </div>

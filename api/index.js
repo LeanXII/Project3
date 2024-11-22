@@ -6,6 +6,6 @@ const app = express()
 app.use('/users', userRoutes)
 
 
-const port = 8080;
+const port = 3000;
 
 app.listen(port, ()=>console.log(`http://localhost:${port}`))

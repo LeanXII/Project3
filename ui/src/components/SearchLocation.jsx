@@ -1,58 +1,61 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 
 function SearchLocation() {
-  const [query, setQuery] = useState('');
-  const [results, setResults] = useState(null);
+  const [searchText, setSearchText] = React.useState('');
+  const [searchResults, setSearchResults] = React.useState(null);
 
-  const handleSearch = async (event) => {
+  function handleSearchButton(event) {
     event.preventDefault();
-    const url = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?namePrefix=${query}`;
 
-    try {
-      const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-          'x-rapidapi-key': 'd227ab3bdfmsh384e9f6c4cdd58ap165d02jsn5402cbec7415', // Replace with your API key
-          'x-rapidapi-host': 'wft-geo-db.p.rapidapi.com'
-        }
+  const searchUrl = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?namePrefix=${searchText}`;
+
+
+    fetch(searchUrl, {
+      method: 'GET',
+      headers: {
+        'x-rapidapi-key': 'd227ab3bdfmsh384e9f6c4cdd58ap165d02jsn5402cbec7415',
+        'x-rapidapi-host': 'wft-geo-db.p.rapidapi.com'
+      }
+    })
+      .then(response => response.json()) 
+      .then(data => {
+        setSearchResults(data.data);
+      })
+      .catch(error => {
+        console.log('Oops, something went wrong:', error);
       });
+  }
 
-
-      const data = await response.json();
-      setResults(data.data);  // Assuming data.data contains the search results
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
-
+ 
   return (
     <div>
-      <h1>Search Locations</h1>
-      <form onSubmit={handleSearch}>
+      <h1>Find a City</h1>
+      <form onSubmit={handleSearchButton}>
         <input
           type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Enter location"
+          value={searchText}
+          onChange={(event) => setSearchText(event.target.value)}
+          placeholder="Type a city name"
         />
-        <button type="submit">Search</button>
+        <button type="submit">
+          Look Up City
+        </button>
       </form>
       <div>
-        {results ? (
+        {searchResults ? (
           <ul>
-            {results.map((result, index) => (
+            {searchResults.map((city, index) => (
               <li key={index}>
-                {result.city}, {result.countryCode}
+                City: {city.city}, Country: {city.countryCode}
               </li>
             ))}
           </ul>
         ) : (
-          <p>No results found</p>
+          <p>Type a city name and click search</p>
         )}
       </div>
     </div>
   );
 }
-
 export default SearchLocation;

@@ -1,5 +1,5 @@
 
-import React from 'react';
+// import React from 'react';
 
 function SearchLocation() {
   const [searchText, setSearchText] = React.useState('');

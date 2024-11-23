@@ -1,11 +1,16 @@
-// src/App.jsx
-import React from 'react';
-import SearchLocation from '/root/Project3/ui/src/components/SearchLocation.jsx';
+
+import SearchLocation from "./components/SearchLocation.jsx";
+import SuggestedLocations from './components/suggestedLocations.jsx'
+
+
+
 
 function App() {
+
   return (
     <div className="App">
       <h1>Location Search</h1>
+      <SuggestedLocations />
       <SearchLocation />
     </div>
   );

@@ -1,0 +1,13 @@
+.attraction-container{
+  display:flex;
+  flex-flow: column wrap;
+}
+
+.attraction-list > * {
+  margin-left: 15px
+}
+
+.attraction-list{
+  display:flex;
+  flex-flow: row wrap;
+}

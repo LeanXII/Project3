@@ -4,7 +4,7 @@
 
 ### Inside api folder:
 
-npm i express pg knex @faker-js/faker dotenv axios cors
+npm i express pg knex @faker-js/faker dotenv axios cors bcryptjs
 
 
 ### Inside ui folder:

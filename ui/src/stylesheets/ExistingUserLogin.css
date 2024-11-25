@@ -47,32 +47,32 @@
 }
 
 
-.input-container{
+.input-container-2{
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
-  height: 30%;
+  height: 50%;
   background-color:rgb(46, 46, 46);
   margin-bottom: 5%;
   border-radius: 5px;
 }
 
-.input-container > * {
+.input-container-2> * {
   margin-left: 5px;
 }
 
-.input-container:focus-within{
+.input-container-2:focus-within{
   outline: rgb(120, 120, 223) solid 1px;
   color:rgba(72, 145, 240, 0.966)
 }
 
-.input-container > label {
+.input-container-2 > label {
   font-size: small;
 }
 
 
 
-.input-container > input {
+.input-container-2 > input {
   background-color: rgb(46, 46, 46);
   border: none;
   outline: none;
@@ -129,7 +129,15 @@
   border-radius: 25px;
 
 }
+.failure-container{
+  align-self: end;
+  padding: 0px 0px 0px 30px;
+  height: max-content;
+  width: max-content;
+  bottom: 17%;
+  left: 2.5%;
 
+}
 .create-account-btn> button {
   background-color: rgba(12, 83, 177, 0.966);
   border: none;
@@ -148,6 +156,3 @@
   transform: translateY(2px);
 
 }
-
-
-

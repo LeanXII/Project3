@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
-import Login from "./components/Login.jsx";
+import CreateUser from "./components/CreateUser.jsx";
 import HomePage from "./components/HomePage.jsx";
+import ExistingUserLogin from "./components/ExistingUserLogin.jsx"
 import {useState, useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
 
@@ -17,7 +18,8 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Login setUserAuth={setUserAuth}/>} />
+      <Route path="/" element={<CreateUser setUserAuth={setUserAuth}/>} />
+      <Route path="/existing_user" element = {<ExistingUserLogin setUserAuth={setUserAuth}/>} />
       <Route path="/home" element={<HomePage />} />
     </Routes>
   );

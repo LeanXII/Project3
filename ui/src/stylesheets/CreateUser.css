@@ -1,0 +1,165 @@
+
+@font-face{
+  font-family: "Inter";
+
+  src: url("/home/lean/WSLProjects/Project3/ui/src/assets/Fonts/Inter-VariableFont_opsz,wght.ttf");
+}
+
+
+.login-wrapper{
+  font-family: "Inter";
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template: 1fr/repeat(2, 1fr);
+  background-color: #121212;
+  color: rgb(153, 152, 152);
+}
+
+.existing-user-link{
+  color: rgba(12, 83, 177, 0.966);
+}
+
+.img-container{
+  height: inherit;
+  width: inherit;
+}
+.img-container> img{
+ height: 100vh;
+ width: 65vw;
+}
+
+.login-input{
+  display: flex;
+  flex-flow: row wrap;
+  align-content: center;
+}
+
+.login-input>h1{
+  margin-bottom: 50px;
+  margin-left: 5%;
+  width: 100%;
+}
+.login-input>h3{
+  width: 100%;
+  margin-left: 5%;
+  margin-bottom: 150px;
+}
+
+
+.input-container{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  height: 30%;
+  background-color:rgb(46, 46, 46);
+  margin-bottom: 5%;
+  border-radius: 5px;
+}
+
+.input-container > * {
+  margin-left: 5px;
+}
+
+.input-container:focus-within{
+  outline: rgb(120, 120, 223) solid 1px;
+  color:rgba(72, 145, 240, 0.966)
+}
+
+.input-container > label {
+  font-size: small;
+}
+
+
+
+.input-container > input {
+  background-color: rgb(46, 46, 46);
+  border: none;
+  outline: none;
+  color: white;
+}
+
+.input-container-wrapper{
+  display: flex;
+  flex-flow: row wrap;
+  width: 75%;
+  align-content: space-around;
+  flex-shrink: 0;
+  margin: 0px 5% 0 5%;
+}
+
+.first-last-container{
+  display: flex;
+  flex-flow: row nowrap;
+  flex-shrink: 0;
+  justify-content: center;
+  height: 30%;
+  width: 100%;
+  margin-bottom: 20px;
+
+}
+
+.failure-container{
+  align-self: end;
+  padding: 0px 0px 0px 30px;
+  height: max-content;
+  width: max-content;
+  bottom: 17%;
+  left: 2.5%;
+
+}
+
+.first-last-container > * {
+  width: 50%;
+  height: 100%;
+}
+
+.first-last-container > :last-child{
+  margin-left: 10px;
+}
+
+#email-field{
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#password-field{
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.create-account-btn{
+  display: flex;
+  justify-content: center;
+  margin-left: 5%;
+  margin-top: 40px;
+  background-color:rgba(65, 141, 240, 0.966);
+  height: 50px;
+  width: 200px;
+  border-radius: 25px;
+
+}
+
+
+
+.create-account-btn> button {
+  background-color: rgba(12, 83, 177, 0.966);
+  border: none;
+  color: white;
+  border-radius: inherit;
+  height: inherit;
+  width: inherit;
+  cursor: pointer;
+}
+
+.create-account-btn>button:hover{
+  background-color:rgba(33, 102, 192, 0.966)
+}
+
+.create-account-btn>button:active{
+  transform: translateY(2px);
+
+}
+
+
+

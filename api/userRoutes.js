@@ -9,10 +9,16 @@ router.get("/", (req, res) => {
   res.status(200).json("Made it to the homepage");
 });
 
-router.post("/create", (req, res) => {
+router.post("/create", async (req, res) => {
   console.log('This is the req.body on the backend', req.body);
-  const { firstname, lastname, email, password } = req.body;
-  knex("users")
+  const { firstname, lastname, email, password } = await req.body;
+
+
+  try{
+    if(!firstname || !lastname || !email || !password){
+      throw new Error
+    }
+    knex("users")
     .insert({
       firstname: firstname,
       lastname: lastname,
@@ -20,12 +26,12 @@ router.post("/create", (req, res) => {
       password: password,
     })
     .then(() => res.status(201).json({ authenticate: true }))
-    .catch((err) => {
-      res.status(500).json({
-        authenticate: false,
-        message: err.message,
-      });
+  } catch(err){
+    res.status(500).json({
+      authenticate: false,
+      message: err.message,
     });
+  };
 });
 
 module.exports = router;

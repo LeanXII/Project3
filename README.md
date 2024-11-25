@@ -4,12 +4,12 @@
 
 ### Inside api folder:
 
-npm i express pg knex @faker-js/faker dotenv axios
+npm i express pg knex @faker-js/faker dotenv axios cors
 
 
 ### Inside ui folder:
 
-npm i dotenv wikibase-sdk
+npm i dotenv wikibase-sdk react-router-dom
 
 ## When running docker commands:
 

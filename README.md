@@ -4,7 +4,7 @@ command to run for all packages:
 
 inside api folder:
 
-npm i express pg knex @faker-js/faker dotenv
+npm i express pg knex @faker-js/faker dotenv 
 
 when running docker commands:
 

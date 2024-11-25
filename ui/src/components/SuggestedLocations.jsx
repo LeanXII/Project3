@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import TouristAttractions from "./TouristAttractions";
-import {nearbySuggestions} from '../../../fakeData.js'
+import {nearbySuggestions} from '../../fakeUIData.js'
 import '../stylesheets/SuggestedLocations.css'
 
 const apiKey = import.meta.env.VITE_API_KEY;

@@ -1,5 +1,4 @@
 import React from 'react';
-// import 'Project3/ui/src/stylesheets/SeachLocations.css';
 
 function SearchLocation() {
   const [searchText, setSearchText] = React.useState('');
@@ -8,8 +7,10 @@ function SearchLocation() {
 
   function handleSearchButton(event) {
     event.preventDefault();
+    const searchTextValue = event.target.elements.searchInput.value;
+    setSearchText(searchTextValue);
 
-    const searchUrl = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?namePrefix=${searchText}`;
+    const searchUrl = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?namePrefix=${searchTextValue}`;
 
     fetch(searchUrl, {
       method: 'GET',
@@ -22,8 +23,8 @@ function SearchLocation() {
       .then(data => {
         const filterResults = data.data.filter(city => city.population > 0);
         setSearchResults(filterResults);
-        if (!previousSearches.includes(searchText)) {
-          setPreviousSearches([...previousSearches, searchText]);
+        if (!previousSearches.includes(searchTextValue)) {
+          setPreviousSearches([...previousSearches, searchTextValue]);
         }
       })
       .catch(error => {
@@ -31,9 +32,22 @@ function SearchLocation() {
       });
   }
 
-  function handlePreviousSearch(search) {
-    setSearchText(search);
-    handleSearchButton(new Event('submit'));
+  let previousSearchList = null;
+  if (previousSearches.length > 0) {
+    previousSearchList = (
+      <div>
+        <h2>Previous Searches:</h2>
+        <ul>
+          {previousSearches.map((search, index) => (
+            <li key={index}>
+              <button onClick={() => handlePreviousSearch(search)}>
+                {search}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
   }
 
   return (
@@ -42,28 +56,14 @@ function SearchLocation() {
       <form onSubmit={handleSearchButton}>
         <input
           type="text"
-          value={searchText}
-          onChange={(event) => setSearchText(event.target.value)}
+          name="searchInput"
           placeholder="Type a city name"
         />
         <button type="submit">Look Up City</button>
       </form>
       
       <div>
-        {previousSearches.length > 0 && (
-          <div>
-            <h2>Previous Searches:</h2>
-            <ul>
-              {previousSearches.map((search, index) => (
-                <li key={index}>
-                  <button onClick={() => handlePreviousSearch(search)}>
-                    {search}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+        {previousSearchList}
       </div>
 
       <div>

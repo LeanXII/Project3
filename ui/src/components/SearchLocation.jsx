@@ -20,7 +20,8 @@ function SearchLocation() {
     })
       .then(response => response.json()) 
       .then(data => {
-        setSearchResults(data.data);
+        const filterResults = data.data.filter(city => city.population > 0);
+        setSearchResults(filterResults);
       })
       .catch(error => {
         console.log('Oops, something went wrong:', error);
@@ -38,18 +39,23 @@ function SearchLocation() {
           onChange={(event) => setSearchText(event.target.value)}
           placeholder="Type a city name"
         />
-        <button type="submit">
-          Look Up City
-        </button>
+        <button type="submit">Look Up City</button>
       </form>
       <div>
         {searchResults ? (
           <ul>
-            {searchResults.map((city, index) => (
-              <li key={index}>
-                City: {city.city}, Country: {city.countryCode}
-              </li>
-            ))}
+            {searchResults.map((city, index) => {
+              const wikiUrl = `https://en.wikipedia.org/wiki/${city.city},_${city.region}`;
+              return (
+                <li key={index}>
+                  City: {city.city}, Country: {city.countryCode}, Region: {city.region}, Population:{' '}
+                  {city.population}, Wiki Link:{' '}
+                  <a href={wikiUrl} target="_blank">
+                    Wikipedia
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         ) : (
           <p>Type a city name and click search</p>

@@ -9,10 +9,28 @@ body{
   
 }
 
-.App{
-  height: 100vh;
-  display: grid;
-  grid-template: repeat(7, 1fr)/repeat(6, 1fr)
+.App {
+  background-image: url('../assets/bbaf850c-4043-468a-a5bd-05645f4a8c41.webp');
+  background-size: cover;
+  background-position: center;
+  height: 100vh; /* Full viewport height */
+  width: 100%;
+  color: black;
+  text-align: center;
+}
+
+
+/* App.css */
+.main-heading {
+  font-size: 3rem;
+  color: #ff5733; /* Orange color */
+  background-color: aliceblue;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  text-transform: uppercase; /* Make text uppercase */
+  letter-spacing: 2px; /* Add spacing between letters */
+  font-family: 'Georgia', serif;
 }
 
 .suggestion-dashboard{

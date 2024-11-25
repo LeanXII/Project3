@@ -1,5 +1,6 @@
 import React from 'react';
-import './SearchLocations.css';
+import '../stylesheets/SearchLocations.css';
+
 
 
 function SearchLocation() {
@@ -38,72 +39,53 @@ function SearchLocation() {
   }
 
   return (
-    <><div className="search-container">
-      <form onSubmit={handleSearchButton}>
-        <input
-          className="search-input"
-          type="text"
-          value={searchText}
-          onChange={(event) => setSearchText(event.target.value)}
-          placeholder="Type a city name" />
-        <button className="search-button" type="submit">
-          Look Up City
-        </button>
-      </form>
+    <div className="search-container">
+  <form onSubmit={handleSearchButton}>
+    <input
+      className="search-input"
+      type="text"
+      value={searchText}
+      onChange={(event) => setSearchText(event.target.value)}
+      placeholder="Type a city name"
+    />
+    <button className="search-button" type="submit">
+      Look Up City
+    </button>
+  </form>
 
-      <div className="previous-searches">
-        <h2>Previous Searches:</h2>
-        <ul>
-          {previousSearches.map((search, index) => (
-            <li key={index}>
-              <button
-                className="previous-search-button"
-                onClick={() => handlePreviousSearch(search)}
-              >
-                {search}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
+  <div className="previous-searches">
+    <h2>Previous Searches:</h2>
+    <ul>
+      {previousSearches.map((search, index) => (
+        <li key={index}>
+          <button
+            className="previous-search-button"
+            onClick={() => handlePreviousSearch(search)}
+          >
+            {search}
+          </button>
+        </li>
+      ))}
+    </ul>
+  </div>
 
-      <div className="search-results">
-        {searchResults && (
-          <ul>
-            {searchResults.map((city, index) => (
-              <li key={index}>
-                City: {city.city}, Country: {city.countryCode}, Region: {city.region}, Population: {city.population},{' '}
-                Wiki Link:{' '}
-                <a href={`https://en.wikipedia.org/wiki/${city.city},_${city.region}`} target="_blank" rel="noopener noreferrer">
-                  Wikipedia
-                </a>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    </div><div>
-        {searchResults ? (
-          <ul>
-            {searchResults.map((city, index) => {
-              const wikiUrl = `https://en.wikipedia.org/wiki/${city.city},_${city.region}`;
-              return (
-                <li key={index}>
-                  City: {city.city}, Country: {city.countryCode}, Region: {city.region}, Population:{' '}
-                  {city.population}, Wiki Link:
-                  <a href={wikiUrl} target="_blank" rel="noopener noreferrer">
-                    Wikipedia
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-        ) : (
-          <p>Type a city name and click search</p>
-        )}
-      </div></>
-    </div>
-  );
+  <div className="search-results">
+    {searchResults && (
+      <ul>
+        {searchResults.map((city, index) => (
+          <li key={index}>
+            City: {city.city}, Country: {city.countryCode}, Region: {city.region}, Population: {city.population},{' '}
+            Wiki Link:{' '}
+            <a href={`https://en.wikipedia.org/wiki/${city.city},_${city.region}`} target="_blank" rel="noopener noreferrer">
+              Wikipedia
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+</div>
+  )
 }
 
 export default SearchLocation;

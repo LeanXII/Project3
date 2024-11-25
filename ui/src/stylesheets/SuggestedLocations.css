@@ -1,14 +1,8 @@
-.suggestion-container{
-  display: flex;
-  flex-flow: column;
-}
-
-.suggestion-container > :not(:last-child){
-  margin-bottom: 10px;
-}
-
-.suggestion-card{
-  border: solid black 1px;
-  box-shadow: 1px 1px;
+.suggestion-container {
+  bottom: 0;
+  width: 50%; /* Stretch across the top */
+  background-color: lightblue; /* Optional: Add a background color */
+  justify-content: center;
+  text-align: center;
 }
 

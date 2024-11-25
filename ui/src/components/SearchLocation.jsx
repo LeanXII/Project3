@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 function SearchLocation() {
   const [searchText, setSearchText] = React.useState('');
   const [searchResults, setSearchResults] = React.useState(null);
   const [previousSearches, setPreviousSearches] = React.useState([]);
-  
-  
 
   function handleSearchButton(event) {
     event.preventDefault();
@@ -21,17 +19,27 @@ function SearchLocation() {
         'x-rapidapi-host': 'wft-geo-db.p.rapidapi.com',
       },
     })
-    .then(response => response.json())
-    .then(data => {
-      const filterResults = data.data.filter(city => city.population > 0);
-      setSearchResults(filterResults);
-      if (!previousSearches.includes(searchTextValue)) {
-        setPreviousSearches([...previousSearches, searchTextValue]);
-      }
-    })
-    .catch(error => {
-      console.log('Oops, something went wrong:', error);
-    });
+      .then(response => response.json())
+      .then(data => {
+        const filterResults = data.data.filter(city => city.population > 0);
+        setSearchResults(filterResults);
+
+        if (previousSearches.indexOf(searchTextValue) === -1) {
+          const updatedSearches = [];
+          for (let i = 0; i < previousSearches.length; i++) {
+            updatedSearches.push(previousSearches[i]);
+          }
+          updatedSearches.push(searchTextValue);
+          setPreviousSearches(updatedSearches);
+        }
+      })
+      .catch(error => {
+        console.log('Oops, something went wrong:', error);
+      });
+  }
+
+  function handlePreviousSearch(search) {
+    setSearchText(search);
   }
 
   let previousSearchList = null;

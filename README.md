@@ -6,6 +6,7 @@
 
 npm i express pg knex @faker-js/faker dotenv axios
 
+
 ### Inside ui folder:
 
 npm i dotenv wikibase-sdk

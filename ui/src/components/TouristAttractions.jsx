@@ -1,6 +1,6 @@
 import { WBK } from "wikibase-sdk";
 import { useState, useEffect } from "react";
-import { attractions } from "../../../fakeData.js";
+import { attractions } from "../../fakeUIData.js";
 import "../stylesheets/TouristAttractions.css";
 
 const wbk = WBK({

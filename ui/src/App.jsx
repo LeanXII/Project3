@@ -1,16 +1,18 @@
-import SearchLocation from "./components/SearchLocation.jsx";
-import SuggestedLocations from "./components/SuggestedLocations.jsx";
+import { Routes, Route } from "react-router-dom";
+import Login from "./components/Login.jsx";
+import HomePage from "./components/HomePage.jsx";
+
+
 import "./stylesheets/App.css";
 
 function App() {
+
+
   return (
-    <div className="App">
-      <h1>Location Search</h1>
-      <div className = "suggestion-dashboard">
-        <SuggestedLocations />
-      </div>
-      <SearchLocation />
-    </div>
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/home" element={<HomePage />} />
+    </Routes>
   );
 }
 

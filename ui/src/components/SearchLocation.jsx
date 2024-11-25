@@ -1,5 +1,5 @@
 import React from 'react';
-// import 'Project3/ui/src/stylesheets/SeachLocations.css';
+import "../stylesheets/SearchLocations.css"
 
 function SearchLocation() {
   const [searchText, setSearchText] = React.useState('');
@@ -36,6 +36,24 @@ function SearchLocation() {
     handleSearchButton(new Event('submit'));
   }
 
+  let previousSearchList = null;
+  if (previousSearches.length > 0) {
+    previousSearchList = (
+      <div>
+        <h2>Previous Searches:</h2>
+        <ul>
+          {previousSearches.map((search, index) => (
+            <li key={index}>
+              <button onClick={() => handlePreviousSearch(search)}>
+                {search}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+
   return (
     <div>
       <h1>Find a City</h1>
@@ -50,20 +68,7 @@ function SearchLocation() {
       </form>
       
       <div>
-        {previousSearches.length > 0 && (
-          <div>
-            <h2>Previous Searches:</h2>
-            <ul>
-              {previousSearches.map((search, index) => (
-                <li key={index}>
-                  <button onClick={() => handlePreviousSearch(search)}>
-                    {search}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+        {previousSearchList}
       </div>
 
       <div>
@@ -75,7 +80,7 @@ function SearchLocation() {
                 <li key={index}>
                   City: {city.city}, Country: {city.countryCode}, Region: {city.region}, Population:{' '}
                   {city.population}, Wiki Link:
-                  <a href={wikiUrl} target="_blank" rel="noopener noreferrer">
+                  <a href={wikiUrl} target="_blank">
                     Wikipedia
                   </a>
                 </li>

@@ -1,5 +1,4 @@
 import React from 'react';
-import "../stylesheets/SearchLocations.css"
 
 function SearchLocation() {
   const [searchText, setSearchText] = React.useState('');
@@ -8,8 +7,10 @@ function SearchLocation() {
 
   function handleSearchButton(event) {
     event.preventDefault();
+    const searchTextValue = event.target.elements.searchInput.value;
+    setSearchText(searchTextValue);
 
-    const searchUrl = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?namePrefix=${searchText}`;
+    const searchUrl = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?namePrefix=${searchTextValue}`;
 
     fetch(searchUrl, {
       method: 'GET',
@@ -22,18 +23,13 @@ function SearchLocation() {
       .then(data => {
         const filterResults = data.data.filter(city => city.population > 0);
         setSearchResults(filterResults);
-        if (!previousSearches.includes(searchText)) {
-          setPreviousSearches([...previousSearches, searchText]);
+        if (!previousSearches.includes(searchTextValue)) {
+          setPreviousSearches([...previousSearches, searchTextValue]);
         }
       })
       .catch(error => {
         console.log('Oops, something went wrong:', error);
       });
-  }
-
-  function handlePreviousSearch(search) {
-    setSearchText(search);
-    handleSearchButton(new Event('submit'));
   }
 
   let previousSearchList = null;
@@ -60,8 +56,7 @@ function SearchLocation() {
       <form onSubmit={handleSearchButton}>
         <input
           type="text"
-          value={searchText}
-          onChange={(event) => setSearchText(event.target.value)}
+          name="searchInput"
           placeholder="Type a city name"
         />
         <button type="submit">Look Up City</button>
@@ -80,7 +75,7 @@ function SearchLocation() {
                 <li key={index}>
                   City: {city.city}, Country: {city.countryCode}, Region: {city.region}, Population:{' '}
                   {city.population}, Wiki Link:
-                  <a href={wikiUrl} target="_blank">
+                  <a href={wikiUrl} target="_blank" rel="noopener noreferrer">
                     Wikipedia
                   </a>
                 </li>

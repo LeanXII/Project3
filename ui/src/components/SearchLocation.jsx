@@ -49,7 +49,7 @@ function SearchLocation() {
               return (
                 <li key={index}>
                   City: {city.city}, Country: {city.countryCode}, Region: {city.region}, Population:{' '}
-                  {city.population}, Wiki Link:{' '}
+                  {city.population}, Wiki Link:
                   <a href={wikiUrl} target="_blank">
                     Wikipedia
                   </a>

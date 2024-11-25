@@ -3,6 +3,7 @@ import '../stylesheets/SearchLocations.css';
 
 
 
+
 function SearchLocation() {
   const [searchText, setSearchText] = React.useState('');
   const [searchResults, setSearchResults] = React.useState(null);
@@ -10,8 +11,10 @@ function SearchLocation() {
 
   function handleSearchButton(event) {
     event.preventDefault();
+    const searchTextValue = event.target.elements.searchInput.value;
+    setSearchText(searchTextValue);
 
-    const searchUrl = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?namePrefix=${searchText}`;
+    const searchUrl = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?namePrefix=${searchTextValue}`;
 
     fetch(searchUrl, {
       method: 'GET',
@@ -24,8 +27,8 @@ function SearchLocation() {
       .then(data => {
         const filterResults = data.data.filter(city => city.population > 0);
         setSearchResults(filterResults);
-        if (!previousSearches.includes(searchText)) {
-          setPreviousSearches([...previousSearches, searchText]);
+        if (!previousSearches.includes(searchTextValue)) {
+          setPreviousSearches([...previousSearches, searchTextValue]);
         }
       })
       .catch(error => {
@@ -33,12 +36,26 @@ function SearchLocation() {
       });
   }
 
-  function handlePreviousSearch(search) {
-    setSearchText(search);
-    handleSearchButton(new Event('submit'));
+  let previousSearchList = null;
+  if (previousSearches.length > 0) {
+    previousSearchList = (
+      <div>
+        <h2>Previous Searches:</h2>
+        <ul>
+          {previousSearches.map((search, index) => (
+            <li key={index}>
+              <button onClick={() => handlePreviousSearch(search)}>
+                {search}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
   }
 
   return (
+
     <div className="search-container">
   <form onSubmit={handleSearchButton}>
     <input
@@ -68,7 +85,6 @@ function SearchLocation() {
       ))}
     </ul>
   </div>
-
   <div className="search-results">
     {searchResults && (
       <ul>

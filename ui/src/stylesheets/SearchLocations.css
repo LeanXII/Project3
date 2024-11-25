@@ -1,3 +1,33 @@
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.suggestion-container {
+  position: absolute;  
+  top: 0;              
+  right: 0;           
+  margin: 20px;       
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+
+}
+
+h1 {
+  text-align: center;
+  margin: 20px 0;
+  color: #333;
+}
+
 .search-container {
   max-width: fit-content;
   margin: 0 auto;
@@ -101,3 +131,8 @@
 .search-results a:hover {
   text-decoration: underline;
 }
+
+
+
+
+

@@ -1,5 +1,6 @@
 import React from 'react';
-// import 'Project3/ui/src/stylesheets/SeachLocations.css';
+import './SearchLocations.css';
+
 
 function SearchLocation() {
   const [searchText, setSearchText] = React.useState('');
@@ -37,36 +38,51 @@ function SearchLocation() {
   }
 
   return (
-    <div>
-      <h1>Find a City</h1>
+    <><div className="search-container">
       <form onSubmit={handleSearchButton}>
         <input
+          className="search-input"
           type="text"
           value={searchText}
           onChange={(event) => setSearchText(event.target.value)}
-          placeholder="Type a city name"
-        />
-        <button type="submit">Look Up City</button>
+          placeholder="Type a city name" />
+        <button className="search-button" type="submit">
+          Look Up City
+        </button>
       </form>
-      
-      <div>
-        {previousSearches.length > 0 && (
-          <div>
-            <h2>Previous Searches:</h2>
-            <ul>
-              {previousSearches.map((search, index) => (
-                <li key={index}>
-                  <button onClick={() => handlePreviousSearch(search)}>
-                    {search}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+
+      <div className="previous-searches">
+        <h2>Previous Searches:</h2>
+        <ul>
+          {previousSearches.map((search, index) => (
+            <li key={index}>
+              <button
+                className="previous-search-button"
+                onClick={() => handlePreviousSearch(search)}
+              >
+                {search}
+              </button>
+            </li>
+          ))}
+        </ul>
       </div>
 
-      <div>
+      <div className="search-results">
+        {searchResults && (
+          <ul>
+            {searchResults.map((city, index) => (
+              <li key={index}>
+                City: {city.city}, Country: {city.countryCode}, Region: {city.region}, Population: {city.population},{' '}
+                Wiki Link:{' '}
+                <a href={`https://en.wikipedia.org/wiki/${city.city},_${city.region}`} target="_blank" rel="noopener noreferrer">
+                  Wikipedia
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div><div>
         {searchResults ? (
           <ul>
             {searchResults.map((city, index) => {
@@ -85,7 +101,7 @@ function SearchLocation() {
         ) : (
           <p>Type a city name and click search</p>
         )}
-      </div>
+      </div></>
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React from 'react';
 
 function SearchLocation() {
   const [searchText, setSearchText] = React.useState('');
-  const [searchResults, setSearchResults] = React.useState(null);d
+  const [searchResults, setSearchResults] = React.useState(null);
   const [previousSearches, setPreviousSearches] = React.useState([]);
 
   function handleSearchButton(event) {

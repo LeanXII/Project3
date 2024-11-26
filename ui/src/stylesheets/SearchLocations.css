@@ -1,6 +1,6 @@
 
 
-html, body {
+ html, body {
     height: 100%;
     margin: 0;
     font-family: Arial, sans-serif;
@@ -10,11 +10,11 @@ html, body {
     align-items: center;
   }
 
-.suggestion-container {
-  position: absolute;  
-  top: 0;              
-  right: 0;           
-  margin: 20px;       
+/* .suggestion-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 20px;
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -26,7 +26,7 @@ h1 {
   text-align: center;
   margin: 20px 0;
   color: #333;
-}
+} */
 
 .search-container {
   max-width: fit-content;

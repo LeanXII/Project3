@@ -18,7 +18,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<CreateUser setUserAuth={setUserAuth}/>} />
+      <Route path="/" element={<CreateUser/>} />
       <Route path="/existing_user" element = {<ExistingUserLogin setUserAuth={setUserAuth}/>} />
       <Route path="/home" element={<HomePage />} />
     </Routes>

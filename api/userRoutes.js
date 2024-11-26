@@ -25,33 +25,62 @@ router.post("/create", async (req, res) => {
         email: email,
         password: hash,
       })
-      .then(() => res.status(201).json({ authenticate: true }));
+      .then(() => res.status(201).json({ accountCreated: true }));
   } catch (err) {
     res.status(500).json({
-      authenticate: false,
+      accountCreated: false,
       message: err.message,
     });
   }
 });
 
 router.post("/existing", (req, res) => {
-  console.log("existing route request on the backend:", req.body);
   const { email, password } = req.body;
   try {
     knex("users")
-      .select("password")
+      .select("password", "id", "email")
       .where({ email: email })
 
-      .then((hashArray) => {
-        if (hashArray.length === 0) {
+      .then((dataArray) => {
+        console.log(dataArray);
+        if (
+          dataArray.length === 0 ||
+          !bcrypt.compareSync(password, dataArray[0].password)
+        ) {
           res.status(200).json("No user found");
         } else {
-          userAuth = bcrypt.compareSync(password, hashArray[0].password);
-          res.status(200).json(userAuth);
+          req.session.user = {
+            id: dataArray[0].id,
+            email: dataArray[0].email,
+          };
+
+          req.session.save((err) => {
+            if (err) {
+              console.error("Issue saving session");
+              return res.status(500).json({ message: "Express session error" });
+            }
+
+            res.status(200).json({
+              userAuth: true,
+              id: req.session.user.id,
+              email: req.session.user.email,
+            });
+          });
         }
       });
   } catch (error) {
     res.status(500).json({ message: err.message });
+  }
+});
+router.get("/session_check", (req, res) => {
+  try {
+    if (req.session.user) {
+      res.status(200).json({ sessionEmail: req.session.user.email });
+    } else {
+      res.status(200).json({ Message: "User needs to login" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 });
 

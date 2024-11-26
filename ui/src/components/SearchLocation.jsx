@@ -1,4 +1,5 @@
 import React from 'react';
+import '../stylesheets/SearchLocations.css'
 
 function SearchLocation() {
   const [searchText, setSearchText] = React.useState('');
@@ -71,7 +72,7 @@ function SearchLocation() {
         />
         <button type="submit">Look Up City</button>
       </form>
-      
+
       <div>
         {previousSearchList}
       </div>

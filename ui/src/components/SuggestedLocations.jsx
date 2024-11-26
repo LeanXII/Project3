@@ -9,8 +9,8 @@ function SuggestedLocations() {
   // const [clientLocationObj, setClientLocationObj] = useState({});
   // const [nearbySuggestions, setNearbySuggestions] = useState({});
 
-  //Request to backend -> backend to ipGrabber and back -> request to geoDbapi
-  //Likely a better way to deal with slow server spin up than a setTimeout
+  // Request to backend -> backend to ipGrabber and back -> request to geoDbapi
+  // Likely a better way to deal with slow server spin up than a setTimeout
 
   // useEffect(() => {
   //   const ipFetch = async () => {

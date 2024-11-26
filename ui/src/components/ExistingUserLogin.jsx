@@ -5,7 +5,6 @@ import "../stylesheets/ExistingUserLogin.css";
 
 const ExistingUserLogin = ({ setUserAuth }) => {
   const [failedLogin, setFailedLogin] = useState(false);
-
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",
@@ -14,6 +13,7 @@ const ExistingUserLogin = ({ setUserAuth }) => {
   const handleLogin = async () => {
     let response = await fetch("http://localhost:3000/users/existing", {
       method: "POST",
+      credentials: 'include',
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -22,7 +22,7 @@ const ExistingUserLogin = ({ setUserAuth }) => {
     });
     response = await response.json();
     console.log("This is the response on the frontend:", response);
-    response === true ? setUserAuth(true) : setFailedLogin(true);
+    response.userAuth === true ? setUserAuth(true) : setFailedLogin(true);
   };
 
   const handleFormInputs = (event) => {

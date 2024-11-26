@@ -24,7 +24,7 @@ services:
     environment:
       - POSTGRES_PASSWORD=docker
       - POSTGRES_USER=postgres
-      - DATABASE_HOST=127.0.0.1
+      - DATABASE_HOST=db
     ports:
       - 5432:5432
     networks:

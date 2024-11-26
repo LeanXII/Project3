@@ -1,5 +1,5 @@
 import React from 'react';
-import "../stylesheets/SearchLocations.css"
+import '../stylesheets/SearchLocations.css'
 
 function SearchLocation() {
   const [searchText, setSearchText] = React.useState('');
@@ -35,8 +35,28 @@ function SearchLocation() {
       });
   }
 
+
+  // Place function from userSaved search here, then delete previous Handle Search Function 
   function handlePreviousSearch(search) {
     setSearchText(search);
+  
+    const searchUrl = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?namePrefix=${search}`;
+  
+    fetch(searchUrl, {
+      method: 'GET',
+      headers: {
+        'x-rapidapi-key': 'd227ab3bdfmsh384e9f6c4cdd58ap165d02jsn5402cbec7415',
+        'x-rapidapi-host': 'wft-geo-db.p.rapidapi.com',
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        const filterResults = data.data.filter(city => city.population > 0);
+        setSearchResults(filterResults);
+      })
+      .catch(error => {
+        console.log('Oops, something went wrong:', error);
+      });
   }
 
   let previousSearchList = null;

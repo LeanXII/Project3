@@ -4,8 +4,6 @@ import HomePage from "./components/HomePage.jsx";
 import ExistingUserLogin from "./components/ExistingUserLogin.jsx"
 import {useState, useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
-
-
 import "./stylesheets/App.css";
 
 function App() {

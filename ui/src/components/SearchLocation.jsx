@@ -1,4 +1,5 @@
 import React from 'react';
+import "../stylesheets/SearchLocations.css"
 
 function SearchLocation() {
   const [searchText, setSearchText] = React.useState('');
@@ -19,21 +20,17 @@ function SearchLocation() {
         'x-rapidapi-host': 'wft-geo-db.p.rapidapi.com',
       },
     })
-      .then(response => response.json())
-      .then(data => {
-        const filterResults = data.data.filter(city => city.population > 0);
+      .then((response) => response.json())
+      .then((data) => {
+        const filterResults = data.data.filter((city) => city.population > 0);
         setSearchResults(filterResults);
 
         if (previousSearches.indexOf(searchTextValue) === -1) {
-          const updatedSearches = [];
-          for (let i = 0; i < previousSearches.length; i++) {
-            updatedSearches.push(previousSearches[i]);
-          }
-          updatedSearches.push(searchTextValue);
+          const updatedSearches = [...previousSearches, searchTextValue];
           setPreviousSearches(updatedSearches);
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.log('Oops, something went wrong:', error);
       });
   }
@@ -45,12 +42,15 @@ function SearchLocation() {
   let previousSearchList = null;
   if (previousSearches.length > 0) {
     previousSearchList = (
-      <div>
+      <div id="previous-searches">
         <h2>Previous Searches:</h2>
         <ul>
           {previousSearches.map((search, index) => (
-            <li key={index}>
-              <button onClick={() => handlePreviousSearch(search)}>
+            <li key={index} className="previous-search-item">
+              <button
+                className="previous-search-button"
+                onClick={() => handlePreviousSearch(search)}
+              >
                 {search}
               </button>
             </li>
@@ -61,31 +61,37 @@ function SearchLocation() {
   }
 
   return (
-    <div>
-      <h1>Find a City</h1>
-      <form onSubmit={handleSearchButton}>
+    <div id="search-container">
+      <h1 id="search-heading">Find a City</h1>
+      <form id="search-form" onSubmit={handleSearchButton}>
         <input
+          id="search-input"
           type="text"
           name="searchInput"
           placeholder="Type a city name"
         />
-        <button type="submit">Look Up City</button>
+        <button id="search-button" type="submit">
+          Look Up City
+        </button>
       </form>
-      
-      <div>
-        {previousSearchList}
-      </div>
 
-      <div>
+      <div>{previousSearchList}</div>
+
+      <div id="search-results">
         {searchResults ? (
           <ul>
             {searchResults.map((city, index) => {
               const wikiUrl = `https://en.wikipedia.org/wiki/${city.city},_${city.region}`;
               return (
-                <li key={index}>
+                <li key={index} className="search-result-item">
                   City: {city.city}, Country: {city.countryCode}, Region: {city.region}, Population:{' '}
                   {city.population}, Wiki Link:
-                  <a href={wikiUrl} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={wikiUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="wiki-link"
+                  >
                     Wikipedia
                   </a>
                 </li>
@@ -93,7 +99,7 @@ function SearchLocation() {
             })}
           </ul>
         ) : (
-          <p>Type a city name and click search</p>
+          <p id="no-results">Type a city name and click search</p>
         )}
       </div>
     </div>

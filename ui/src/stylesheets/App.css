@@ -5,36 +5,35 @@ html, body {
   width: 100%;
 }
 
-body{
-  
-}
+
 
 .App {
-  background-image: url('../assets/bbaf850c-4043-468a-a5bd-05645f4a8c41.webp');
-  background-size: cover;
+background-image: url('../assets/bbaf850c-4043-468a-a5bd-05645f4a8c41.webp');
+  background-size: cover ;
   background-position: center;
-  height: 100vh; /* Full viewport height */
-  width: 100%;
-  color: black;
-  text-align: center;
-}
+  height: 100vh;
+width: 100vw; 
 
+text-align: center; 
+ }
 
-/* App.css */
 .main-heading {
-  font-size: 3rem;
-  color: #ff5733; /* Orange color */
-  background-color: aliceblue;
-  text-align: center;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  text-transform: uppercase; /* Make text uppercase */
-  letter-spacing: 2px; /* Add spacing between letters */
-  font-family: 'Georgia', serif;
+  display: flex;
+  align-items: center; /* Align logo and text vertically */
+  justify-content: center; /* Center the heading horizontally */
+  font-size: 2.5rem; /* Adjust the font size */
+  color: #333; /* Text color */
+  margin: 20px 0; /* Space around the heading */
+  background-color: lightblue;
 }
+
+.logo {
+  height: 40px; /* Adjust logo height */
+  margin-right: 10px; /* Space between the logo and text */
+}
+
 
 .suggestion-dashboard{
   grid-area: 2/4/5/6;
-
 }
 

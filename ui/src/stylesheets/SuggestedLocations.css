@@ -4,5 +4,10 @@
   background-color: lightblue; /* Optional: Add a background color */
   justify-content: center;
   text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
+.suggestion-dashboard {
+  color: black;
+}

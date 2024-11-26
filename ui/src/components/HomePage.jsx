@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import backgroundImage from '../assets/bbaf850c-4043-468a-a5bd-05645f4a8c41.webp';
 import RocketLogo from '../assets/RocketLogo.webp'
-
+import '../stylesheets/HomePage.css'
 
 import "../stylesheets/App.css";
 
@@ -29,9 +29,9 @@ function HomePage() {
       {!loading && !sessionIDFailure && (
         <div className="App">
           <h1 className="main-heading">
-            <img 
-              src={RocketLogo} 
-              alt="Rocket Logo" 
+            <img
+              src={RocketLogo}
+              alt="Rocket Logo"
               className="logo"
             />
                   'Adventure is out there!'
@@ -45,15 +45,15 @@ function HomePage() {
       {loading && (
         <div className="session-check-wrapper">
           {!sessionIDFailure ? (
-            <div>Validating credentials...</div>
+            <div className = "validating">Validating credentials...</div>
           ) : (
-            <>
+            <div className = "you-must-log-in">
               <h1>Oops!</h1>
               <h3>
                 <Link to="/existing_user">Log in</Link> or{" "}
                 <Link to="/">Create account</Link>
               </h3>
-            </>
+            </div>
           )}
         </div>
       )}

@@ -20,6 +20,20 @@
   color: rgba(12, 83, 177, 0.966);
 }
 
+.account-created-container{
+  background-color: #121212;
+  height: 100vh;
+  width:100vw;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.account-created-container>*{
+  color: rgb(152, 152, 152)
+}
+
 .img-container{
   height: inherit;
   width: inherit;

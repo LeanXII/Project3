@@ -11,7 +11,8 @@ function SuggestedLocations() {
 
   // Request to backend -> backend to ipGrabber and back -> request to geoDbapi
   // Likely a better way to deal with slow server spin up than a setTimeout
-
+ const apiKey = import.meta.env.VITE_API_KEY
+ 
   useEffect(() => {
     const ipFetch = async () => {
       try {

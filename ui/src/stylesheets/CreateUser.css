@@ -2,7 +2,7 @@
 @font-face{
   font-family: "Inter";
 
-  src: url("/home/lean/WSLProjects/Project3/ui/src/assets/Fonts/Inter-VariableFont_opsz,wght.ttf");
+  src: url("../assets/Fonts/Inter-VariableFont_opsz\,wght.ttf");
 }
 
 
@@ -38,6 +38,7 @@
 .login-input>h1{
   margin-bottom: 50px;
   margin-left: 5%;
+  text-align: start;
   width: 100%;
 }
 .login-input>h3{

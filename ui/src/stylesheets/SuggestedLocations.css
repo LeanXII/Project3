@@ -1,13 +1,41 @@
 .suggestion-container {
-  bottom: 0;
-  width: 50%; /* Stretch across the top */
-  background-color: lightblue; /* Optional: Add a background color */
-  justify-content: center;
-  text-align: center;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  gap: 20px; /* Space between cards */
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for the container */
+  margin-top: 20px;
 }
 
-.suggestion-dashboard {
-  color: black;
+.suggestion-card {
+  width: 80%; /* Adjust card width */
+  max-width: 600px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Card shadow */
+  text-align: center; /* Center card content */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.suggestion-card:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.loading-spinner {
+  font-size: 1.5rem;
+  color: #007bff;
+  text-align: center;
+}
+
+.error-message {
+  font-size: 1.2rem;
+  color: red;
+  text-align: center;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../stylesheets/SearchLocations.css'
+import '../stylesheets/SearchLocations.css';
 
 function SearchLocation() {
   const [searchText, setSearchText] = React.useState('');
@@ -25,8 +25,12 @@ function SearchLocation() {
         const filterResults = data.data.filter((city) => city.population > 0);
         setSearchResults(filterResults);
 
-        if (previousSearches.indexOf(searchTextValue) === -1) {
-          const updatedSearches = [...previousSearches, searchTextValue];
+        if (!previousSearches.includes(searchTextValue)) {
+          const updatedSearches = [];
+          for (let i = 0; i < previousSearches.length; i++) {
+            updatedSearches.push(previousSearches[i]);
+          }
+          updatedSearches.push(searchTextValue);
           setPreviousSearches(updatedSearches);
         }
       })
@@ -35,13 +39,11 @@ function SearchLocation() {
       });
   }
 
-
-  // Place function from userSaved search here, then delete previous Handle Search Function 
   function handlePreviousSearch(search) {
     setSearchText(search);
-  
+
     const searchUrl = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?namePrefix=${search}`;
-  
+
     fetch(searchUrl, {
       method: 'GET',
       headers: {
@@ -49,12 +51,12 @@ function SearchLocation() {
         'x-rapidapi-host': 'wft-geo-db.p.rapidapi.com',
       },
     })
-      .then(response => response.json())
-      .then(data => {
-        const filterResults = data.data.filter(city => city.population > 0);
+      .then((response) => response.json())
+      .then((data) => {
+        const filterResults = data.data.filter((city) => city.population > 0);
         setSearchResults(filterResults);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log('Oops, something went wrong:', error);
       });
   }

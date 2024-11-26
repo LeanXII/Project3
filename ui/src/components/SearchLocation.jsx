@@ -1,4 +1,5 @@
 import React from 'react';
+
 import '../stylesheets/SearchLocations.css';
 
 function SearchLocation() {
@@ -96,7 +97,6 @@ function SearchLocation() {
           Look Up City
         </button>
       </form>
-
       <div>{previousSearchList}</div>
 
       <div id="search-results">

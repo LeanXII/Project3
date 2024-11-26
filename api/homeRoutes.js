@@ -11,6 +11,8 @@ router.use((req, res, next) => {
 })
 
 router.get("/", async (req, res) => {
+
+
   try {
     const response = await axios.get("http://ip-api.com/json/");
 

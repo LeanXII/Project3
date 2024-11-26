@@ -3,33 +3,33 @@ html, body {
   padding: 0;
   height: 100%;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-
 
 .App {
 background-image: url('../assets/bbaf850c-4043-468a-a5bd-05645f4a8c41.webp');
-  background-size: cover ;
-  background-position: center;
-  height: 100vh;
+background-size: cover ;
+background-position: center;
+height: 100vh;
 width: 100vw; 
-
 text-align: center; 
  }
 
 .main-heading {
   display: flex;
-  align-items: center; /* Align logo and text vertically */
-  justify-content: center; /* Center the heading horizontally */
-  font-size: 2.5rem; /* Adjust the font size */
-  color: #333; /* Text color */
-  margin: 20px 0; /* Space around the heading */
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  color: #333;
+  margin: 20px 0;
   background-color: lightblue;
 }
 
 .logo {
-  height: 40px; /* Adjust logo height */
-  margin-right: 10px; /* Space between the logo and text */
+  height: 40px;
+  margin-right: 10px;
 }
 
 

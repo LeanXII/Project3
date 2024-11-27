@@ -50,8 +50,8 @@ function HomePage() {
             <div className = "you-must-log-in">
               <h1>Oops!</h1>
               <h3>
-                <Link to="/existing_user">Log in</Link> or{" "}
-                <Link to="/">Create account</Link>
+                <Link to="/existing_user" className = "existing-user-link">Log in</Link> or{" "}
+                <Link to="/" className = "existing-user-link">Create account</Link>
               </h3>
             </div>
           )}

@@ -39,6 +39,7 @@
   margin-bottom: 50px;
   margin-left: 5%;
   width: 100%;
+  color: rgb(177, 173, 173);
 }
 .login-input>h3{
   width: 100%;
@@ -131,12 +132,18 @@
 }
 .failure-container{
   align-self: end;
+  display: flex;
   padding: 0px 0px 0px 30px;
+  margin-top: 25px;
   height: max-content;
   width: max-content;
   bottom: 17%;
   left: 2.5%;
+  color: rgb(168, 40, 40)
+}
 
+.failure-container > :last-child{
+  margin-left: 10px;
 }
 .create-account-btn> button {
   background-color: rgba(12, 83, 177, 0.966);

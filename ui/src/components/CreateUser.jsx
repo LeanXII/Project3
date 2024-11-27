@@ -4,7 +4,10 @@ import { Link } from "react-router-dom";
 import "../stylesheets/CreateUser.css";
 
 const CreateUser = () => {
-  const [createAccountFailed, setCreateAccountFailed] = useState(false);
+  const [createAccountFailed, setCreateAccountFailed] = useState({
+    value: false,
+    failures: 0,
+  });
   const [accountCreated, setAccountCreated] = useState(false);
 
   const [formValues, setFormValues] = useState({
@@ -27,7 +30,11 @@ const CreateUser = () => {
     console.log("This is the response on the frontend:", response);
     response.accountCreated === true
       ? setAccountCreated(true)
-      : setCreateAccountFailed(true);
+      : setCreateAccountFailed((prevState) => ({
+          ...prevState,
+          value: true,
+          failures: prevState.failures + 1,
+        }));
   };
 
   const handleFormInputs = (event) => {
@@ -99,12 +106,10 @@ const CreateUser = () => {
                 Create Account
               </button>
             </div>
-            {createAccountFailed && (
+            {createAccountFailed.value && (
               <div className="failure-container">
                 <p>Failed to login</p>
-                <button onClick={() => setCreateAccountFailed(false)}>
-                  Go Back
-                </button>
+                <p>x{createAccountFailed.failures}</p>
               </div>
             )}
           </div>

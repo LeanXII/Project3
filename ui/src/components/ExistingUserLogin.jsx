@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "../stylesheets/ExistingUserLogin.css";
 
 const ExistingUserLogin = ({ setUserAuth }) => {
-  const [failedLogin, setFailedLogin] = useState(false);
+  const [failedLogin, setFailedLogin] = useState({ value: false, failures: 0 });
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",
@@ -13,7 +13,7 @@ const ExistingUserLogin = ({ setUserAuth }) => {
   const handleLogin = async () => {
     let response = await fetch("http://localhost:3000/users/existing", {
       method: "POST",
-      credentials: 'include',
+      credentials: "include",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -22,7 +22,13 @@ const ExistingUserLogin = ({ setUserAuth }) => {
     });
     response = await response.json();
     console.log("This is the response on the frontend:", response);
-    response.userAuth === true ? setUserAuth(true) : setFailedLogin(true);
+    response.userAuth === true
+      ? setUserAuth(true)
+      : setFailedLogin((prevState) => ({
+          ...prevState,
+          value: true,
+          failures: prevState.failures + 1,
+        }));
   };
 
   const handleFormInputs = (event) => {
@@ -71,10 +77,10 @@ const ExistingUserLogin = ({ setUserAuth }) => {
               Log in
             </button>
           </div>
-          {failedLogin && (
-            <div className = "failure-container">
+          {failedLogin.value && (
+            <div className="failure-container">
               <p>Failed to login</p>
-              <button onClick={() => setFailedLogin(false)}>Go Back</button>
+              <p>x{failedLogin.failures}</p>
             </div>
           )}
         </div>
